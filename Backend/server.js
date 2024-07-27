@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const authRoutes = require("./routes/authRoutes.js");
 const messageRoutes = require("./routes/messageRoutes.js");
@@ -20,13 +21,25 @@ const corsOptions = {
     credentials: true,
   };
 
+
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
+const ___dirname = path.resolve();
+
 app.use("/api/auth",authRoutes);
 app.use("/api/messages",messageRoutes);
 app.use("/api/users",userRoutes);
+
+app.use(express.static(path.join(___dirname,"/Frontend/dist")));
+
+app.get("*",(req,res) => {
+  res.sendFile(path.join(___dirname,"Frontend","dist","index.html"));
+});
+
+
 
 server.listen(PORT, () => {
     connectToMongoDB();
