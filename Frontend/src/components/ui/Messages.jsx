@@ -3,7 +3,7 @@ import { Button } from "./button";
 import ChatBubble from "./ChatBubble";
 import { ScrollArea } from "./scroll-area";
 import { Input } from "./input";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSocketContext } from "@/context/socketContext";
 
 
@@ -45,10 +45,24 @@ const Messages = ({id,conversation,setConversation}) => {
         }
     }
 
+    const conversationRef = useRef(null);
+
+    const scrollToBottom = () => {
+        conversationRef.current.scrollIntoView(false);
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    },[]);
+
+    useEffect(() => {
+        scrollToBottom();
+    },[conversation]);
+
     return (
         <div className="flex flex-col h-full max-h-full">
                         <ScrollArea className="h-[calc(100vh_-_21rem)]">
-                                <div className="p-3 pl-4 flex flex-col gap-2">
+                                <div className="p-3 pl-4 flex flex-col gap-2" ref={conversationRef} >
                                     {conversation && conversation.map((m) => <ChatBubble text={m.message} isUser={m.senderId!==id} key={m._id} />)}
                                 </div>
                         </ScrollArea>
