@@ -15,7 +15,7 @@ const Messages = ({id,conversation,setConversation}) => {
 
     useEffect(() => {
         socket?.on("newMessage",(newMessage) => {
-            setConversation([...conversation,newMessage])
+            conversation && setConversation([...conversation,newMessage])
         }) 
 
         return () => socket?.off("newMessage");
