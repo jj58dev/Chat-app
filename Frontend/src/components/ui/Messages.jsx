@@ -48,7 +48,7 @@ const Messages = ({id,conversation,setConversation}) => {
     return (
         <div className="flex flex-col h-full max-h-full">
                         <ScrollArea className="relative h-[calc(100vh_-_21rem)]">
-                            <div className="absolute bottom-0 p-3 pl-4 flex flex-col gap-2">
+                            <div className="absolute bottom-0 p-3 pl-4 flex flex-col gap-2 w-full">
                                 {conversation && conversation.map((m) => <ChatBubble text={m.message} isUser={m.senderId!==id} key={m._id} />)}
                             </div>
                         </ScrollArea>
