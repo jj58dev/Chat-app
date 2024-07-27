@@ -33,7 +33,7 @@ const Chat = () => {
 
     useEffect(()=>{
         const userFetch = async () => {
-            const res = await fetch("http://localhost:5000/api/users/",{
+            const res = await fetch("https://chat-app-0xb9.onrender.com/api/users/",{
                 method: 'GET',
                 credentials: 'include'
             });
@@ -63,7 +63,7 @@ const Chat = () => {
 
     useEffect(() => {
         const fetchConvo = async () => {
-            const res = await fetch(`http://localhost:5000/api/messages/${curConvo}`,{
+            const res = await fetch(`https://chat-app-0xb9.onrender.com/api/messages/${curConvo}`,{
                 method : 'GET',
                 credentials : 'include'
             });

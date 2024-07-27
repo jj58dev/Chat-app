@@ -23,7 +23,7 @@ const Messages = ({id,conversation,setConversation}) => {
 
 
     const handleSend = async () => {
-        const res = await fetch(`http://localhost:5000/api/messages/send/${id}`,{
+        const res = await fetch(`https://chat-app-0xb9.onrender.com/api/messages/send/${id}`,{
             method : 'POST',
             credentials : 'include',
             headers : {'Content-Type' : "application/json"},

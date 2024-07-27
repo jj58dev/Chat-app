@@ -43,7 +43,7 @@ const SignUp = () => {
         setLoading(true);
 
         try{
-            const res = await fetch("http://localhost:5000/api/auth/signin",{
+            const res = await fetch("https://chat-app-0xb9.onrender.com/api/auth/signin",{
                 method: "POST",
                 credentials: "include",
                 headers: {'Content-Type' : "application/json"},
