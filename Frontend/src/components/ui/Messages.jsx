@@ -14,12 +14,18 @@ const Messages = ({id,conversation,setConversation}) => {
     const {socket} = useSocketContext();
 
     useEffect(() => {
-        socket?.on("newMessage",(newMessage) => {
-            conversation && setConversation([...conversation,newMessage])
-        }) 
-
-        return () => socket?.off("newMessage");
-    },[socket])
+        const handleNewMessage = (newMessage) => {
+            setConversation((prevConversation) => [...prevConversation, newMessage]);
+        };
+    
+        if (socket) {
+            socket.on("newMessage", handleNewMessage);
+    
+            return () => {
+                socket.off("newMessage", handleNewMessage);
+            };
+        }
+    }, [socket, conversation]);
 
 
     const handleSend = async () => {
